@@ -3,14 +3,17 @@ package main
 import (
 	"golang_restful_api/app"
 	"golang_restful_api/controller"
+	"golang_restful_api/helper"
 	"golang_restful_api/repository"
 	"golang_restful_api/service"
+	"net/http"
 
 	"github.com/go-playground/validator/v10"
+	_ "github.com/go-sql-driver/mysql" // Import driver MySQL untuk database
 	"github.com/julienschmidt/httprouter"
 )
 
-func main() {
+func main(){
 	//  koneksikan ke database
 	db := app.NewDB()
 	// defer db.Close() // Pastikan koneksi database ditutup setelah digunakan
@@ -36,4 +39,14 @@ func main() {
 	router.POST("/api/categories", categoryController.Create)
 	router.PUT("/api/categories/:categoryId", categoryController.Update)
 	router.DELETE("/api/categories/:categoryId", categoryController.Delete)
+
+
+	// Membuat Server
+	server := http.Server{
+		Addr:    "localhost:3000", 	// Port yang digunakan untuk server
+		Handler: router, 			// Router yang menangani permintaan HTTP
+	}
+
+	err := server.ListenAndServe() 	// Memulai server dan mendengarkan permintaan
+	helper.PanicIfError(err) 		// Menangani error jika terjadi saat memulai server
 }
