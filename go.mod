@@ -2,7 +2,10 @@ module golang_restful_api
 
 go 1.24.4
 
-require github.com/go-playground/validator v9.31.0+incompatible
+require (
+	github.com/go-playground/validator v9.31.0+incompatible
+	github.com/julienschmidt/httprouter v1.3.0
+)
 
 require (
 	github.com/go-playground/locales v0.14.1 // indirect

@@ -13,7 +13,7 @@ go get -u github.com/go-sql-driver/mysql
   Installation
 
 ```bash
-$ go get github.com/julienschmidt/httprouter
+go get github.com/julienschmidt/httprouter
 ```
 
 - Validation : (https://github.com/go-playground/validator)[https://github.com/go-playground/validator]
