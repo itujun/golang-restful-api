@@ -7,14 +7,21 @@ import (
 	"golang_restful_api/model/domain"
 	"golang_restful_api/model/web"
 	"golang_restful_api/repository"
+
+	"github.com/go-playground/validator"
 )
 
 type CategoryServiceImpl struct {
-	CategoryRepository repository.CategoryRepository // Menyatakan bahwa CategoryServiceImpl adalah implementasi dari CategoryRepository
-	DB                 *sql.DB                       // Menyatakan bahwa CategoryServiceImpl memiliki koneksi ke database
+	CategoryRepository 	repository.CategoryRepository // Menyatakan bahwa CategoryServiceImpl adalah implementasi dari CategoryRepository
+	DB                 	*sql.DB                       // Menyatakan bahwa CategoryServiceImpl memiliki koneksi ke database
+	Validate			*validator.Validate
 }
 
 func (service *CategoryServiceImpl) Create(ctx context.Context, request web.CategoryCreateRequest) web.CategoryResponse {
+	// Lakukan validasi terhadap request sebelum melakukan transaksi
+	err := service.Validate.Struct(request)
+	helper.PanicIfError(err)
+
 	// Membuat transaksi baru
 	tx, err := service.DB.Begin()
 	helper.PanicIfError(err)
@@ -32,6 +39,10 @@ func (service *CategoryServiceImpl) Create(ctx context.Context, request web.Cate
 }
 
 func (service *CategoryServiceImpl) Update(ctx context.Context, request web.CategoryUpdateRequest) web.CategoryResponse {
+	// Lakukan validasi terhadap request sebelum melakukan transaksi
+	err := service.Validate.Struct(request)
+	helper.PanicIfError(err)
+	
 	// Membuat transaksi baru
 	tx, err := service.DB.Begin()
 	helper.PanicIfError(err)
