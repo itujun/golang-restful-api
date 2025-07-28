@@ -13,9 +13,9 @@
   "paths": {
     "/categories": {
       "get": {
+        "tags": ["Category API"],
         "description": "List All Categories",
         "summary": "List All Categories",
-        "operationId": "listCategories",
         "responses": {
           "200": {
             "description": "Success get all categories",
@@ -37,12 +37,62 @@
                           "type": "object",
                           "properties": {
                             "id": {
-                              "type": "string"
+                              "type": "number"
                             },
                             "name": {
                               "type": "string"
                             }
                           }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Category API"],
+        "description": "Create New Categories",
+        "summary": "Create New Categories",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success Create New Category",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "number"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "number"
+                        },
+                        "name": {
+                          "type": "string"
                         }
                       }
                     }
