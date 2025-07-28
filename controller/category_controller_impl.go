@@ -14,6 +14,14 @@ type CategoryControllerImpl struct {
 	CategoryService service.CategoryService // Menyatakan bahwa CategoryControllerImpl adalah implementasi dari CategoryService
 }
 
+// Fungsi untuk membuat instance baru dari CategoryControllerImpl
+func NewCategoryController(categoryService service.CategoryService) CategoryController { 
+	return &CategoryControllerImpl{
+		CategoryService: categoryService, // Inisialisasi CategoryService
+	}
+}
+
+
 func (controller *CategoryControllerImpl) Create(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
 	// Implementasi untuk membuat kategori
 
