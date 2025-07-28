@@ -22,3 +22,15 @@ $ go get github.com/julienschmidt/httprouter
 ```bash
 go get github.com/go-playground/validator/v10
 ```
+
+## MEMBUAT DATABASE
+
+query
+
+```bash
+create table category
+(
+  id  integer PRIMARY KEY auto_increment,
+  name VARCHAR(200) not NULL
+)engine = InnoDB
+```
