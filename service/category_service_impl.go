@@ -3,6 +3,7 @@ package service
 import (
 	"context"
 	"database/sql"
+	"golang-restful-api/exception"
 	"golang-restful-api/helper"
 	"golang-restful-api/model/domain"
 	"golang-restful-api/model/web"
@@ -58,7 +59,9 @@ func (service *CategoryServiceImpl) Update(ctx context.Context, request web.Cate
 
 	// Mencari category yang hendak diupdate
 	category, err := service.CategoryRepository.FindById(ctx, tx, request.Id)
-	helper.PanicIfError(err)
+	if err != nil{
+		panic(exception.NewNotFoundError(err.Error()))
+	}
 
 	// Jika kategori sudah ketemu, lakukan pembaruan data kategori
 	category.Name = request.Name
@@ -77,7 +80,9 @@ func (service *CategoryServiceImpl) Delete(ctx context.Context, categoryId int) 
 
 	// Mencari category yang hendak dihapus
 	category, err := service.CategoryRepository.FindById(ctx, tx, categoryId)
-	helper.PanicIfError(err)
+	if err != nil{
+		panic(exception.NewNotFoundError(err.Error()))
+	}
 
 	// Memanggil repository Delete untuk menghapus kategori
 	service.CategoryRepository.Delete(ctx, tx, category)
@@ -93,7 +98,9 @@ func (service *CategoryServiceImpl) FindById(ctx context.Context, categoryId int
 
 	// Mencari category berdasarkan ID
 	category, err := service.CategoryRepository.FindById(ctx, tx, categoryId)
-	helper.PanicIfError(err)
+	if err != nil{
+		panic(exception.NewNotFoundError(err.Error()))
+	}
 
 	return helper.ToCategoryResponse(category)
 }
