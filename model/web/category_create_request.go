@@ -1,5 +1,5 @@
 package web
 
 type CategoryCreateRequest struct {
-	Name string `validate:"required,min=1,max=200"` // Validasi untuk nama kategori
+	Name string `validate:"required,min=1,max=200" json:"name"` // Validasi untuk nama kategori
 }
