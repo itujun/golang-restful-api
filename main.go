@@ -1,11 +1,11 @@
 package main
 
 import (
-	"golang_restful_api/app"
-	"golang_restful_api/controller"
-	"golang_restful_api/helper"
-	"golang_restful_api/repository"
-	"golang_restful_api/service"
+	"golang-restful-api/app"
+	"golang-restful-api/controller"
+	"golang-restful-api/helper"
+	"golang-restful-api/repository"
+	"golang-restful-api/service"
 	"net/http"
 
 	"github.com/go-playground/validator/v10"
@@ -13,7 +13,7 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-func main(){
+func main() {
 	//  koneksikan ke database
 	db := app.NewDB()
 	// defer db.Close() // Pastikan koneksi database ditutup setelah digunakan

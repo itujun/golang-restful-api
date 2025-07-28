@@ -2,7 +2,7 @@ package service
 
 import (
 	"context"
-	"golang_restful_api/model/web"
+	"golang-restful-api/model/web"
 )
 
 // BUAT KONTRAKNYA DULU

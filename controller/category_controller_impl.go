@@ -1,9 +1,9 @@
 package controller
 
 import (
-	"golang_restful_api/helper"
-	"golang_restful_api/model/web"
-	"golang_restful_api/service"
+	"golang-restful-api/helper"
+	"golang-restful-api/model/web"
+	"golang-restful-api/service"
 	"net/http"
 	"strconv"
 
@@ -16,7 +16,7 @@ type CategoryControllerImpl struct {
 
 // Fungsi untuk membuat instance baru dari CategoryControllerImpl
 func NewCategoryController(categoryService service.CategoryService) CategoryController { 
-	return &CategoryControllerImpl{
+	return &CategoryControllerImpl {
 		CategoryService: categoryService, // Inisialisasi CategoryService
 	}
 }

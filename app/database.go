@@ -2,7 +2,7 @@ package app
 
 import (
 	"database/sql"
-	"golang_restful_api/helper"
+	"golang-restful-api/helper"
 	"time"
 )
 
