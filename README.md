@@ -23,6 +23,13 @@ go get github.com/julienschmidt/httprouter
 go get github.com/go-playground/validator/v10
 ```
 
+- Unit Test / Testify (https://github.com/stretchr/testify)[https://github.com/stretchr/testify]
+  Installation
+
+```bash
+go get github.com/stretchr/testify
+```
+
 ## MEMBUAT DATABASE
 
 query

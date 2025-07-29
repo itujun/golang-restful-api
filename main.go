@@ -3,7 +3,6 @@ package main
 import (
 	"golang-restful-api/app"
 	"golang-restful-api/controller"
-	"golang-restful-api/exception"
 	"golang-restful-api/helper"
 	"golang-restful-api/middleware"
 	"golang-restful-api/repository"
@@ -12,7 +11,6 @@ import (
 
 	"github.com/go-playground/validator/v10"
 	_ "github.com/go-sql-driver/mysql" // Import driver MySQL untuk database
-	"github.com/julienschmidt/httprouter"
 )
 
 func main() {
@@ -32,17 +30,8 @@ func main() {
 	//  inisialisasi controller
 	categoryController := controller.NewCategoryController(categoryService)
 
-	//  inisialisasi router
-	router := httprouter.New()
-
-	//  menambahkan route untuk kategori
-	router.GET("/api/categories", categoryController.FindAll)
-	router.GET("/api/categories/:categoryId", categoryController.FindById)
-	router.POST("/api/categories", categoryController.Create)
-	router.PUT("/api/categories/:categoryId", categoryController.Update)
-	router.DELETE("/api/categories/:categoryId", categoryController.Delete)
-
-	router.PanicHandler = exception.ErrorHandler
+	// router
+	router := app.NewRouter(categoryController)
 
 	// Membuat Server
 	server := http.Server{
