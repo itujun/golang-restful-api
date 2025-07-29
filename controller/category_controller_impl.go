@@ -53,7 +53,7 @@ func (controller *CategoryControllerImpl) Create(writer http.ResponseWriter, req
 	// helper.PanicIfError(err)								// Menangani error jika terjadi saat encoding
 
 	// 4. Dirapikan/Destrucring
-	helper.WriteToResponse(writer, webResponse) // Mengembalikan response yang sesuai dengan format JSON
+	helper.WriteToResponseBody(writer, webResponse) // Mengembalikan response yang sesuai dengan format JSON
 }
 
 func (controller *CategoryControllerImpl) Update(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
@@ -63,7 +63,7 @@ func (controller *CategoryControllerImpl) Update(writer http.ResponseWriter, req
 	categoryUpdateRequest := web.CategoryUpdateRequest{}
 	helper.ReadFromRequestBody(request, &categoryUpdateRequest) // Membaca request body dan mengikatnya ke CategoryUpdateRequest
 
-	categoryId := params.ByName("id") 	// Mengambil ID kategori dari parameter URL
+	categoryId := params.ByName("categoryId") 	// Mengambil ID kategori dari parameter URL
 	id, err := strconv.Atoi(categoryId) // Mengonversi ID dari string ke integer
 	helper.PanicIfError(err)
 
@@ -80,14 +80,14 @@ func (controller *CategoryControllerImpl) Update(writer http.ResponseWriter, req
 	}
 
 	// 4. Mengembalikan response yang sesuai dengan format JSON
-	helper.WriteToResponse(writer, webResponse) 
+	helper.WriteToResponseBody(writer, webResponse) 
 }
 
 func (controller *CategoryControllerImpl) Delete(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
 	// Implementasi untuk menghapus kategori
 
 	// 1. Mengambil ID kategori dari parameter URL
-	categoryId := params.ByName("id") 	// Mengambil ID kategori dari parameter URL
+	categoryId := params.ByName("categoryId") 	// Mengambil ID kategori dari parameter URL
 	id, err := strconv.Atoi(categoryId) // Mengonversi ID dari string ke integer
 	helper.PanicIfError(err)
 
@@ -102,14 +102,14 @@ func (controller *CategoryControllerImpl) Delete(writer http.ResponseWriter, req
 	}
 
 	// 4. Mengembalikan response yang sesuai dengan format JSON
-	helper.WriteToResponse(writer, webResponse) 
+	helper.WriteToResponseBody(writer, webResponse) 
 }
 
-func (controller *CategoryControllerImpl) FindByid(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
+func (controller *CategoryControllerImpl) FindById(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
 	// Implementasi untuk menemukan kategori berdasarkan ID
 
 	// 1. Mengambil ID kategori dari parameter URL
-	categoryId := params.ByName("id") 	// Mengambil ID kategori dari parameter URL
+	categoryId := params.ByName("categoryId") 	// Mengambil ID kategori dari parameter URL
 	id, err := strconv.Atoi(categoryId) // Mengonversi ID dari string ke integer
 	helper.PanicIfError(err)
 
@@ -124,7 +124,7 @@ func (controller *CategoryControllerImpl) FindByid(writer http.ResponseWriter, r
 	}
 
 	// 4. Mengembalikan response yang sesuai dengan format JSON
-	helper.WriteToResponse(writer, webResponse)
+	helper.WriteToResponseBody(writer, webResponse)
 }
 
 func (controller *CategoryControllerImpl) FindAll(writer http.ResponseWriter, request *http.Request, params httprouter.Params) {
@@ -140,5 +140,5 @@ func (controller *CategoryControllerImpl) FindAll(writer http.ResponseWriter, re
 	}
 
 	// 4. Mengembalikan response yang sesuai dengan format JSON
-	helper.WriteToResponse(writer, webResponse) 
+	helper.WriteToResponseBody(writer, webResponse) 
 }

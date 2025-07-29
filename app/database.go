@@ -4,10 +4,12 @@ import (
 	"database/sql"
 	"golang-restful-api/helper"
 	"time"
+
+	_ "github.com/go-sql-driver/mysql"
 )
 
 func NewDB() *sql.DB {
-	db, err := sql.Open("mysql", "root:@tcp(localhost:3306)/learn-golang-restful-api")
+	db, err := sql.Open("mysql", "root:@/learn-golang-restful-api")
 	helper.PanicIfError(err)
 
 	db.SetMaxIdleConns(10) // Set maximum idle connections

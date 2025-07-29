@@ -3,6 +3,7 @@ package main
 import (
 	"golang-restful-api/app"
 	"golang-restful-api/controller"
+	"golang-restful-api/exception"
 	"golang-restful-api/helper"
 	"golang-restful-api/repository"
 	"golang-restful-api/service"
@@ -35,16 +36,17 @@ func main() {
 
 	//  menambahkan route untuk kategori
 	router.GET("/api/categories", categoryController.FindAll)
-	router.GET("/api/categories/:categoryId", categoryController.FindByid)
+	router.GET("/api/categories/:categoryId", categoryController.FindById)
 	router.POST("/api/categories", categoryController.Create)
 	router.PUT("/api/categories/:categoryId", categoryController.Update)
 	router.DELETE("/api/categories/:categoryId", categoryController.Delete)
 
+	router.PanicHandler = exception.ErrorHandler
 
 	// Membuat Server
 	server := http.Server{
 		Addr:    "localhost:3000", 	// Port yang digunakan untuk server
-		Handler: router, 			// Router yang menangani permintaan HTTP
+		Handler: router, 					// Router yang menangani permintaan HTTP
 	}
 
 	err := server.ListenAndServe() 	// Memulai server dan mendengarkan permintaan

@@ -59,7 +59,7 @@ func (service *CategoryServiceImpl) Update(ctx context.Context, request web.Cate
 
 	// Mencari category yang hendak diupdate
 	category, err := service.CategoryRepository.FindById(ctx, tx, request.Id)
-	if err != nil{
+	if err != nil {
 		panic(exception.NewNotFoundError(err.Error()))
 	}
 
@@ -80,7 +80,7 @@ func (service *CategoryServiceImpl) Delete(ctx context.Context, categoryId int) 
 
 	// Mencari category yang hendak dihapus
 	category, err := service.CategoryRepository.FindById(ctx, tx, categoryId)
-	if err != nil{
+	if err != nil {
 		panic(exception.NewNotFoundError(err.Error()))
 	}
 
@@ -98,7 +98,7 @@ func (service *CategoryServiceImpl) FindById(ctx context.Context, categoryId int
 
 	// Mencari category berdasarkan ID
 	category, err := service.CategoryRepository.FindById(ctx, tx, categoryId)
-	if err != nil{
+	if err != nil {
 		panic(exception.NewNotFoundError(err.Error()))
 	}
 

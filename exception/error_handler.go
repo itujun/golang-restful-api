@@ -20,6 +20,7 @@ func ErrorHandler(writer http.ResponseWriter, request *http.Request, err interfa
 	}
 
 	internalServerError(writer, request, err)
+	
 }
 
 func validationErrors(writer http.ResponseWriter, request *http.Request, err interface{}) bool {
@@ -33,7 +34,7 @@ func validationErrors(writer http.ResponseWriter, request *http.Request, err int
 			Status: "BAD REQUEST",
 			Data:   exception.Error(),
 		}
-		helper.WriteToResponse(writer, webResponse)
+		helper.WriteToResponseBody(writer, webResponse)
 		return true
 	} else {
 		return false
@@ -51,7 +52,7 @@ func notFoundError(writer http.ResponseWriter, request *http.Request, err interf
 			Status: "NOT FOUND",
 			Data:   exception.Error,
 		}
-		helper.WriteToResponse(writer, webResponse)
+		helper.WriteToResponseBody(writer, webResponse)
 		return true
 	} else {
 		return false
@@ -67,5 +68,5 @@ func internalServerError(writer http.ResponseWriter, request *http.Request, err 
 		Status: "INTERNAL SERVER ERROR",
 		Data:   err,
 	}
-	helper.WriteToResponse(writer, webResponse)
+	helper.WriteToResponseBody(writer, webResponse)
 }
