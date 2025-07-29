@@ -5,6 +5,7 @@ import (
 	"golang-restful-api/controller"
 	"golang-restful-api/exception"
 	"golang-restful-api/helper"
+	"golang-restful-api/middleware"
 	"golang-restful-api/repository"
 	"golang-restful-api/service"
 	"net/http"
@@ -45,8 +46,8 @@ func main() {
 
 	// Membuat Server
 	server := http.Server{
-		Addr:    "localhost:3000", 	// Port yang digunakan untuk server
-		Handler: router, 					// Router yang menangani permintaan HTTP
+		Addr:    "localhost:3000", 						// Alamat server
+		Handler: middleware.NewAuthMiddleware(router), 	// Router yang menangani permintaan HTTP
 	}
 
 	err := server.ListenAndServe() 	// Memulai server dan mendengarkan permintaan
